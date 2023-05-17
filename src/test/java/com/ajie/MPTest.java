@@ -28,9 +28,9 @@ public class MPTest {
     @Test
     public void testInsert() {
         User user = new User();
-        user.setAge(18);
-        user.setName("ajie");
-        user.setEmail("1637888292@qq.com");
+        user.setAge(20);
+        user.setName("ajie_test");
+        user.setEmail("xxxxxxxxx@qq.com");
         // 返回受影响的行数
         int insert = userMapper.insert(user);
         // id 自动回填
