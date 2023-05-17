@@ -1,0 +1,16 @@
+package com.ajie;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+ * @author ajie
+ * @date 2023/5/17
+ * @description:
+ */
+@SpringBootApplication
+public class MPApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(MPApplication.class, args);
+    }
+}
