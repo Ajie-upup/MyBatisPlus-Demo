@@ -26,5 +26,18 @@ public class LockTest {
         userMapper.updateById(user);
     }
 
+    /**
+     * 测试乐观锁失败场景
+     */
+    @Test
+    public void testOptimisticLockerFail() {
+        User user = userMapper.selectById(7L);
+        user.setAge(19);
+        //模拟取出数据后，数据库中version实际数据比取出的值大，即已被其它线程修改并更新了version
+        user.setVersion(user.getVersion() - 1);
+        // 执行更新，version字段没有自增
+        userMapper.updateById(user);
+    }
+
 
 }

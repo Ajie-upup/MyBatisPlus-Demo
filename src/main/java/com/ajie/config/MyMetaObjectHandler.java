@@ -23,6 +23,8 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         this.setFieldValByName("updateTime", new Date(), metaObject);
         // 设置初始版本号
         this.setFieldValByName("version", 1, metaObject);
+        // 设置逻辑删除
+        this.setFieldValByName("deleted", 0, metaObject);
     }
 
     /**

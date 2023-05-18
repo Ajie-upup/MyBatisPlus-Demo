@@ -2,10 +2,12 @@ package com.ajie;
 
 import com.ajie.mapper.UserMapper;
 import com.ajie.pojo.User;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -49,4 +51,48 @@ public class MPTest {
         int update = userMapper.updateById(user);
         System.out.println(user);
     }
+
+
+    /**
+     * 根据 id 查询
+     */
+    @Test
+    public void testSelectById() {
+        User user = userMapper.selectById(1L);
+        System.out.println(user);
+    }
+
+    /**
+     * 根据 id 批量查询
+     */
+    @Test
+    public void testByIds() {
+        List<User> users = userMapper.selectBatchIds(Arrays.asList(1, 2, 3));
+        users.forEach(System.out::println);
+    }
+
+    /**
+     * 测试分页查询
+     */
+    @Test
+    public void testSelectPage() {
+        Page<User> page = new Page<>(1, 5);
+        userMapper.selectPage(page, null);
+
+        // 查询到的结果封装在 page 对象 records 中
+        page.getRecords().forEach(System.out::println);
+        System.out.println(page.getCurrent());
+        System.out.println(page.getPages());
+        System.out.println(page.getSize());
+        System.out.println(page.getTotal());
+        System.out.println(page.hasNext());
+        System.out.println(page.hasPrevious());
+    }
+
+    @Test
+    public void testLogicDelete() {
+        userMapper.deleteById(1L);
+        System.out.println(userMapper.selectById(1L)); // null
+    }
+
 }
